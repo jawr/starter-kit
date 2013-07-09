@@ -21,11 +21,10 @@
   <script type="text/x-handlebars" data-template-name="clients">
     <hr>
     <h2>Clients</h2>
-    <form>
-      {{view Ember.TextField placeholder="Name" valueBindings="newName"}}
-      {{view Ember.TextField placeholder="Code" valueBindings="newCode" action="createClient"}}
-      <br>
-      <a href="#" {{action createClient}}>create</a>
+    <form {{action create on="submit"}}>
+      {{view Ember.TextField placeholder="Name" valueBinding="name"}}
+      {{view Ember.TextField placeholder="Code" valueBinding="code"}}
+      <button type="submit">Create Client</button>
     </form>
     <br>
     <ul>

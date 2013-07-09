@@ -23,15 +23,10 @@ App.ClientsRoute = Ember.Route.extend({
 
 /* controllers */
 App.ClientsController = Ember.ArrayController.extend({
-  createClient: function() {
+  create: function() {
 
-    console.log(this);
-
-    var name = this.get('newName');
-    var code = this.get('newCode');
-
-    console.log(name);
-    console.log(code);
+    var name = this.get('name');
+    var code = this.get('code');
 
     // create model
     var client = App.Client.createRecord({
@@ -42,10 +37,14 @@ App.ClientsController = Ember.ArrayController.extend({
     // validate?
     
     // clean up
-    this.set('newName', '');
-    this.set('newCode', '');
+    this.set('name', '');
+    this.set('code', '');
 
     client.save()
+  },
+  
+  valid: function() {
+    if (!this.name || !this.code) { return false; }
   }
 });
 
