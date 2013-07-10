@@ -1,4 +1,6 @@
-App = Ember.Application.create();
+App = Ember.Application.create({
+    LOG_TRANSITIONS: true,
+});
 
 /* models */
 App.Store = DS.Store.extend({
@@ -13,16 +15,18 @@ App.Client = DS.Model.extend({
 
 /* routes */
 App.Router.map(function() {
-  this.route('index');
-  this.route('clients');  
+    this.resource('clients', function() {
+        this.route('new');
+    });  
 });
 
 App.ClientsRoute = Ember.Route.extend({
   model: function() { return App.Client.find(); }
 });
 
+
 /* controllers */
-App.ClientsController = Ember.ArrayController.extend({
+App.ClientsNewController = Ember.ArrayController.extend({
   create: function() {
 
     var name = this.get('name');
